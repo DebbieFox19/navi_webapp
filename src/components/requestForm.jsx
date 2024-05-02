@@ -121,7 +121,7 @@ function RequestForm() {
                         </Form.Group>
                     </div>
                 </div>
-                <Button variant="primary" type="submit" style={{ backgroundColor: 'black', color: 'white', marginBottom: '10px' }}>
+                <Button variant="primary" type="submit" style={{ backgroundColor: '#016236', color: 'white', marginBottom: '10px' }}>
                     Submit
                 </Button>
                 <p>Once you have submitted your request, it will be sent to the Head of the specified department to approve.</p>
