@@ -10,6 +10,7 @@ import NavBar from './NavBar';
 import Request from './pages/Request';
 import RequestManagement from './pages/RequestManagement';
 import SignInPage from './pages/SignIn';
+import CreateAccountPage from './pages/CreateAccount';
 import Homepage from './pages/Homepage';
 
 
@@ -30,6 +31,7 @@ function App() {
               <Route path="/signin" element={<SignInPage />} /> 
               <Route path="/Request" element={<ProtectedRoute> <Request /> </ProtectedRoute>} />
               <Route path="/RequestManagement" element={<ProtectedRoute> <RequestManagement /> </ProtectedRoute>} />
+              <Route path="/CreateAccount" element={<CreateAccountPage />} />
             </Routes>
           </UserAuthContextProvider>
         </div>

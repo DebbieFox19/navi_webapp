@@ -1,0 +1,4 @@
+1. complete the sign up page of firebase
+2. Set up backend
+2. Create database and link to application
+3. HTTP requests to post requestForm data to database
