@@ -1,27 +1,38 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Homepage from './pages/Homepage'; // Updated import statement
-import NavBar from './NavBar';
-import Request from './pages/Request';
-import RequestManagement from './pages/RequestManagement'; // Corrected import statement
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserAuthContextProvider } from "./context/UserAuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
+//import pages to the main app
+import NavBar from './NavBar';
+import Request from './pages/Request';
+import RequestManagement from './pages/RequestManagement';
+import SignInPage from './pages/SignIn';
+import Homepage from './pages/Homepage';
+
+//Function that loads the page based on url with wrappers that provide authcontext to all childres and checks if user is logged in.
 
 function App() {
   return (
     <BrowserRouter>
-      <div>
+      <div className="App">
         <NavBar />
-     <UserAuthContextProvider>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/Request" element={<Request />} />
-          <Route path="/RequestManagement" element={<RequestManagement />} />
-        </Routes>
-      </UserAuthContextProvider>
-        <footer style={{ backgroundColor: "#f2f2f2", padding: "10px", textAlign: "center" }}>
+        <br/>
+        <br/>
+
+        <div id="page-body">
+          <UserAuthContextProvider>
+            <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/signin" element={<SignInPage />} /> 
+              <Route path="/Request" element={<ProtectedRoute> <Request /> </ProtectedRoute>} />
+              <Route path="/RequestManagement" element={<ProtectedRoute> <RequestManagement /> </ProtectedRoute>} />
+            </Routes>
+          </UserAuthContextProvider>
+        </div>
+        <footer style={{ backgroundColor: "#f2f2f2", padding: "10px", textAlign: "center", position: "fixed", bottom: "0", width: "100%" }}>
           <p style={{ margin: "0" }}>NAVI - Improving Predictability</p>
           <p style={{ margin: "0", fontSize: "12px", color: "#888" }}>© 2024 Debbie Fox. All rights reserved.</p>
         </footer>

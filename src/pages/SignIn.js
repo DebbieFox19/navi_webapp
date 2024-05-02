@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import GoogleButton from "react-google-button";
+import { Card } from "react-bootstrap";
 import { useUserAuth } from "../context/UserAuthContext";
 
-const Login = () => {
+const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -17,7 +17,7 @@ const Login = () => {
     setError("");
     try {
       await logIn(email, password);
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       setError(err.message);
     }
@@ -25,8 +25,9 @@ const Login = () => {
 
   return (
     <>
+    <Card className="m-auto" style={{ width: "30%", paddingTop: "10px" }}>
       <div className="p-4 box">
-        <h2 className="mb-3">Firebase Auth Login</h2>
+        <h2 className="mb-3">Login</h2>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -52,18 +53,16 @@ const Login = () => {
           </div>
         </Form>
         <hr />
-        <div>
-          <GoogleButton
-            className="g-btn"
-            type="dark"
-          />
-        </div>
+
       </div>
       <div className="p-4 box mt-3 text-center">
-        Don't have an account? <Link to="/signup">Sign up</Link>
+        Don't have an account? <Link to="/CreateAccount">Sign up</Link>
       </div>
+      </Card>
     </>
   );
 };
 
-export default Login;
+export default SignInPage;
+
+

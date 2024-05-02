@@ -3,9 +3,15 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import logo from './logo.svg';
+import { useNavigate } from 'react-router-dom'
+import { getAuth, signOut } from 'firebase/auth';
+import useUser from './hooks/useUser';
 
 
 function NavBar() {
+    const { user } = useUser();
+    const navigate = useNavigate();
+
     return (
         <>
             <Navbar bg="dark" data-bs-theme="dark">
@@ -26,6 +32,15 @@ function NavBar() {
                         <Nav.Link href="./Request">Raise Request</Nav.Link>
                         <span style={{ padding: '0 10px' }}></span>
                         <Nav.Link href="./RequestManagement">Request Management</Nav.Link>
+
+                        {user
+                        ? <button style={{backgroundColor: '#775b59', borderColor: '#775b59', color: '#FFFFFF',}} className="btn btn-outline-success" onClick={() => {
+                            signOut(getAuth());
+                        }}>Log Out</button>
+                        : <button style={{backgroundColor: '#775b59', borderColor: '#775b59', color: '#FFFFFF',}} className="btn btn-outline-success" onClick={() => {
+                            navigate('/signin');
+                        }}>Log In</button>
+                        }
                     </Nav>
                 </Container>
             </Navbar>
