@@ -1,7 +1,9 @@
+
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import logo from './logo.svg';
+
 
 function NavBar() {
     return (
@@ -18,9 +20,11 @@ function NavBar() {
                         />{' '}
                         NAVI
                     </Navbar.Brand>
-                    <Nav className="me-auto">
+                    <Nav className="ml-auto" style={{ padding: '0 20px' }}>
                         <Nav.Link href="./">Home</Nav.Link>
+                        <span style={{ padding: '0 10px' }}></span> {/* Add padding here */}
                         <Nav.Link href="./Request">Raise Request</Nav.Link>
+                        <span style={{ padding: '0 10px' }}></span>
                         <Nav.Link href="./RequestManagement">Request Management</Nav.Link>
                     </Nav>
                 </Container>
@@ -28,6 +32,4 @@ function NavBar() {
         </>
     );
 }
-
 export default NavBar;
-
