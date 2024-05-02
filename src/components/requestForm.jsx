@@ -8,7 +8,7 @@ function RequestForm() {
     };
 
     return (
-        <div style={{ backgroundColor: 'lightgrey', padding: '40px', borderRadius: '30px' }}>
+        <div style={{ backgroundColor: '#BED3AB', padding: '40px', borderRadius: '30px' }}>
             <Form onSubmit={handleSubmit}>
             <p>Please capture as much information as possible in the form to help the allocated team deal with your request.</p>
             <br />

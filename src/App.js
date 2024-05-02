@@ -12,6 +12,7 @@ import RequestManagement from './pages/RequestManagement';
 import SignInPage from './pages/SignIn';
 import Homepage from './pages/Homepage';
 
+
 //Function that loads the page based on url with wrappers that provide authcontext to all childres and checks if user is logged in.
 
 function App() {
@@ -32,6 +33,8 @@ function App() {
             </Routes>
           </UserAuthContextProvider>
         </div>
+        <br/>
+        <br/>
         <footer style={{ backgroundColor: "#f2f2f2", padding: "10px", textAlign: "center", position: "fixed", bottom: "0", width: "100%" }}>
           <p style={{ margin: "0" }}>NAVI - Improving Predictability</p>
           <p style={{ margin: "0", fontSize: "12px", color: "#888" }}>© 2024 Debbie Fox. All rights reserved.</p>

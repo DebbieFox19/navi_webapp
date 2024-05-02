@@ -26,18 +26,18 @@ function NavBar() {
                         />{' '}
                         NAVI
                     </Navbar.Brand>
-                    <Nav className="ml-auto" style={{ padding: '0 20px' }}>
+                    <Nav className="ml-auto" style={{ padding: '0 10px' }}>
                         <Nav.Link href="./">Home</Nav.Link>
                         <span style={{ padding: '0 10px' }}></span> {/* Add padding here */}
                         <Nav.Link href="./Request">Raise Request</Nav.Link>
                         <span style={{ padding: '0 10px' }}></span>
                         <Nav.Link href="./RequestManagement">Request Management</Nav.Link>
-
+                        <span style={{ padding: '0 10px' }}></span>
                         {user
-                        ? <button style={{backgroundColor: '#775b59', borderColor: '#775b59', color: '#FFFFFF',}} className="btn btn-outline-success" onClick={() => {
+                        ? <button style={{backgroundColor: '#BED3AB', borderColor: '#BED3AB', color: '#06040A', fontWeight: 'bold'}} className="btn btn-outline-success" onClick={() => {
                             signOut(getAuth());
                         }}>Log Out</button>
-                        : <button style={{backgroundColor: '#775b59', borderColor: '#775b59', color: '#FFFFFF',}} className="btn btn-outline-success" onClick={() => {
+                        : <button style={{backgroundColor: '#BED3AB', borderColor: '#BED3AB', color: '#06040A', fontWeight: 'bold'}} className="btn btn-outline-success" onClick={() => {
                             navigate('/signin');
                         }}>Log In</button>
                         }
