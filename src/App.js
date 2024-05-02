@@ -11,13 +11,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <BrowserRouter>
-      <div>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/Request" element={<Request />} />
-          <Route path="/RequestManagement" element={<RequestManagement />} />
-        </Routes>
+      <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+        <div style={{ flex: 1 }}>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/Request" element={<Request />} />
+            <Route path="/RequestManagement" element={<RequestManagement />} />
+          </Routes>
+        </div>
         <footer style={{ backgroundColor: "#f2f2f2", padding: "10px", textAlign: "center" }}>
           <p style={{ margin: "0" }}>NAVI - Improving Predictability</p>
           <p style={{ margin: "0", fontSize: "12px", color: "#888" }}>© 2024 Debbie Fox. All rights reserved.</p>
