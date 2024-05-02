@@ -18,6 +18,10 @@ function App() {
           <Route path="/Request" element={<Request />} />
           <Route path="/RequestManagement" element={<RequestManagement />} />
         </Routes>
+        <footer style={{ backgroundColor: "#f2f2f2", padding: "10px", textAlign: "center" }}>
+          <p style={{ margin: "0" }}>NAVI - Improving Predictability</p>
+          <p style={{ margin: "0", fontSize: "12px", color: "#888" }}>© 2024 Debbie Fox. All rights reserved.</p>
+        </footer>
       </div>
     </BrowserRouter>
   );
