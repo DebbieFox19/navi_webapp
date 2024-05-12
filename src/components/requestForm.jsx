@@ -8,7 +8,18 @@ function RequestForm() {
         // Handle form submission logic here
     };
 
-    
+    const [name, setName] = useState('');
+    const [productTeamName, setProductTeamName] = useState('');
+    const [timesheetCode, setTimesheetCode] = useState('');
+    const [email, setEmail] = useState('');
+    const [supportTeamRequired, setSupportTeamRequired] = useState('');
+    const [skillsRequired, setSkillsRequired] = useState('');
+    const [supportType, setSupportType] = useState('');
+    const [priority, setPriority] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+    const [duration, setDuration] = useState('');
+    const [description, setDescription] = useState('');
 
 
     return (
@@ -22,33 +33,54 @@ function RequestForm() {
                             <Form.Label><strong>Name</strong></Form.Label>
                             <Form.Control type="text" 
                                           placeholder="Enter your name" 
-                                          required style={{ marginBottom: '10px' }} 
-                            />
+                                          required style={{ marginBottom: '10px' }}
+                                          value = {name}
+                                          onChange = {(e) => setName(e.target.value)}
 
+                            />
                             <Form.Control.Feedback type="invalid">Valid name is required</Form.Control.Feedback>
                         </Form.Group>
                     </div>
+                    
                     <div className="col-md-4 mb-3">
                         <Form.Group controlId="productTeamName">
                             <Form.Label><strong>Product Team Name</strong></Form.Label>
-                            <Form.Control type="text" placeholder="Enter your Product Team name" style={{ marginBottom: '10px' }} />
+                            <Form.Control   type="text" 
+                                            placeholder="Enter your Product Team name" 
+                                            style={{ marginBottom: '10px' }} 
+                                            value = {productTeamName}
+                                            onChange = {(e) => setProductTeamName(e.target.value)}
+                            />
                         </Form.Group>
                     </div>
+
                     <div className="col-md-4 mb-3">
                         <Form.Group controlId="timesheetCode">
                             <Form.Label><strong>Timesheet Code</strong></Form.Label>
-                            <Form.Control type="text" placeholder="Timesheet code" required style={{ marginBottom: '10px' }} />
+                            <Form.Control   type="text" 
+                                            placeholder="Timesheet code" 
+                                            required style={{ marginBottom: '10px' }} 
+                                            value = {timesheetCode}
+                                            onChange = {(e) => setTimesheetCode(e.target.value)}
+                            />
                         </Form.Group>
                     </div>
                 </div>
+
                 <div className="row">
                     <div className="col-md-4 mb-3">
                         <Form.Group controlId="email">
                             <Form.Label><strong>Email</strong></Form.Label>
-                            <Form.Control type="email" placeholder="Enter your email" required style={{ marginBottom: '10px' }} />
+                            <Form.Control   type="email" 
+                                            placeholder="Enter your email" 
+                                            required style={{ marginBottom: '10px' }} 
+                                            value = {email}
+                                            onChange = {(e) => setEmail(e.target.value)}
+                            />
                             <Form.Control.Feedback type="invalid">Valid email is required</Form.Control.Feedback>
                         </Form.Group>
                     </div>
+
                     <div className="col-md-4 mb-3">
                         <Form.Group controlId="supportTeamRequired">
                             <Form.Label><strong>Support Team Required</strong></Form.Label>
@@ -59,13 +91,21 @@ function RequestForm() {
                             </Form.Control>
                         </Form.Group>
                     </div>
+
                     <div className="col-md-4 mb-3">
                         <Form.Group controlId="skillsRequired">
                             <Form.Label><strong>Skills Required</strong></Form.Label>
-                            <Form.Control as="textarea" rows={3} placeholder="Enter the skills that are required. For example SQL, or Linux" style={{ marginBottom: '10px' }} />
+                            <Form.Control   as="textarea" 
+                                            rows={3} 
+                                            placeholder="Enter the skills that are required. For example SQL, or Linux" 
+                                            style={{ marginBottom: '10px' }} 
+                                            value = {skillsRequired}
+                                            onChange = {(e) => setSkillsRequired(e.target.value)}
+                            />
                         </Form.Group>
                     </div>
                 </div>
+
                 <div className="row">
                     <div className="col-md-4 mb-2">
                         <Form.Group controlId="supportType">
@@ -77,6 +117,7 @@ function RequestForm() {
                             </Form.Control>
                         </Form.Group>
                     </div>
+
                     <div className="col-md-4 mb-2">
                         <Form.Group controlId="priority">
                             <Form.Label><strong>Priority</strong></Form.Label>
@@ -90,21 +131,34 @@ function RequestForm() {
                         </Form.Group>
                     </div>
                 </div>
+
                 <div className="row">
                     <div className="col-md-4 mb-2">
                         <Form.Group controlId="startDate">
                             <Form.Label><strong>Start Date</strong></Form.Label>
-                            <Form.Control type="date" placeholder="Select start date" required style={{ marginBottom: '10px' }} />
+                            <Form.Control   type="date" 
+                                            placeholder="Select start date" 
+                                            required style={{ marginBottom: '10px' }} 
+                                            value = {startDate}
+                                            onChange = {(e) => setStartDate(e.target.value)}
+                            />
                             <Form.Control.Feedback type="invalid">Start date is required</Form.Control.Feedback>
                         </Form.Group>
                     </div>
+
                     <div className="col-md-4 mb-2">
                         <Form.Group controlId="endDate">
                             <Form.Label><strong>End Date</strong></Form.Label>
-                            <Form.Control type="date" placeholder="Select end date" required style={{ marginBottom: '10px' }} />
+                            <Form.Control   type="date" 
+                                            placeholder="Select end date" 
+                                            required style={{ marginBottom: '10px' }}
+                                            value = {endDate}
+                                            onChange = {(e) => setEndDate(e.target.value)}
+                            />
                             <Form.Control.Feedback type="invalid">End date is required</Form.Control.Feedback>
                         </Form.Group>
                     </div>
+
                     <div className="col-md-4 mb-2">
                         <Form.Group controlId="duration">
                             <Form.Label><strong>Hours per Day</strong></Form.Label>
@@ -120,11 +174,18 @@ function RequestForm() {
                         </Form.Group>
                     </div>
                 </div>
+
                 <div className="row">
                     <div className="col-md-8 mb-3">
                         <Form.Group controlId="description">
                             <Form.Label><strong>Description</strong></Form.Label>
-                            <Form.Control as="textarea" rows={3} placeholder="Enter a description of the issue" required style={{ marginBottom: '10px' }} />
+                            <Form.Control   as="textarea" 
+                                            rows={3} 
+                                            placeholder="Enter a description of the issue" 
+                                            required style={{ marginBottom: '10px' }} 
+                                            value = {description}
+                                            onChange = {(e) => setDescription(e.target.value)}
+                            />
                             <Form.Control.Feedback type="invalid">Description is required</Form.Control.Feedback>
                         </Form.Group>
                     </div>
@@ -133,6 +194,7 @@ function RequestForm() {
                     Submit
                 </Button>
                 <p>Once you have submitted your request, it will be sent to the Head of the specified department to approve.</p>
+
             </Form>
         </div>
     );
