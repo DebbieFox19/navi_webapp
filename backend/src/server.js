@@ -2,7 +2,9 @@
 //import admin from 'firebase-admin';
 import express from 'express';
 import 'dotenv/config';
+import bodyParser from "body-parser";
 import pg from 'pg';
+import { all } from 'axios';
 
 
 
@@ -20,6 +22,9 @@ app.use(express.json());
 
 
 //middleware
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 app.use(async (req, res, next) => {
     const { authtoken } = req.headers;
@@ -47,18 +52,22 @@ const db = new pg.Client({
 });
 
 db.connect();
-console.log('connected to database');
+
 
 //ROUTES
 //get requests
 
 //get all requests
+let allRequests = [];
 db.query('SELECT * FROM requests', (err, res) => {  
     if (err) {
         console.log("Error executing query", err.stack)
     } else {
-        console.log(res.rows)
+        allRequests = (res.rows);
     }
+
 
 db.end();
 });
+
+export default allRequests;

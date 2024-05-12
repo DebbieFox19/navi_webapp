@@ -2,25 +2,39 @@ import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
 
-function RequestForm() {
+const RequestForm = () => {
+const [name, setName] = useState('');
+const [productTeamName, setProductTeamName] = useState('');
+const [timesheetCode, setTimesheetCode] = useState('');
+const [email, setEmail] = useState('');
+const [supportTeamRequired, setSupportTeamRequired] = useState('');
+const [skillsRequired, setSkillsRequired] = useState('');
+const [supportType, setSupportType] = useState('');
+const [priority, setPriority] = useState('');
+const [startDate, setStartDate] = useState('');
+const [endDate, setEndDate] = useState('');
+const [duration, setDuration] = useState('');
+const [description, setDescription] = useState('');
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
         // Handle form submission logic here
-    };
-
-    const [name, setName] = useState('');
-    const [productTeamName, setProductTeamName] = useState('');
-    const [timesheetCode, setTimesheetCode] = useState('');
-    const [email, setEmail] = useState('');
-    const [supportTeamRequired, setSupportTeamRequired] = useState('');
-    const [skillsRequired, setSkillsRequired] = useState('');
-    const [supportType, setSupportType] = useState('');
-    const [priority, setPriority] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [duration, setDuration] = useState('');
-    const [description, setDescription] = useState('');
-
+        const formData = {  name, 
+                            productTeamName, 
+                            timesheetCode, 
+                            email, 
+                            supportTeamRequired, 
+                            skillsRequired, 
+                            supportType, 
+                            priority, 
+                            startDate, 
+                            endDate, 
+                            duration, 
+                            description 
+                        };
+        ;
+    }
 
     return (
         <div style={{ backgroundColor: '#BED3AB', padding: '40px', borderRadius: '30px' }}>
