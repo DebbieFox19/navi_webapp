@@ -2,7 +2,8 @@
 //import admin from 'firebase-admin';
 import express from 'express';
 import 'dotenv/config';
-import { db, connectToDb } from './db.js';
+import pg from 'pg';
+
 
 
 //call credentials for firebase
@@ -36,20 +37,28 @@ app.use(async (req, res, next) => {
     next();
 });
 
-// ROUTES
-// get requests    
- 
-
-
-
-
-
-
-
 //database connection
-connectToDb(() => {
-    console.log('Successfully connected to database!');
-    app.listen(8000, () => {
-        console.log('Server is listening on port 8000');
-    });
-})
+const db = new pg.Client({
+    user: "postgres",
+    host: "localhost",
+    database: "Navi",
+    password: "N4viP0stgres",
+    port: 5432,
+});
+
+db.connect();
+console.log('connected to database');
+
+//ROUTES
+//get requests
+
+//get all requests
+db.query('SELECT * FROM requests', (err, res) => {  
+    if (err) {
+        console.log("Error executing query", err.stack)
+    } else {
+        console.log(res.rows)
+    }
+
+db.end();
+});

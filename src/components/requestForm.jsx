@@ -1,11 +1,15 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { useState } from 'react';
 
 function RequestForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Handle form submission logic here
     };
+
+    
+
 
     return (
         <div style={{ backgroundColor: '#BED3AB', padding: '40px', borderRadius: '30px' }}>
@@ -16,7 +20,11 @@ function RequestForm() {
                     <div className="col-md-4 mb-3">
                         <Form.Group controlId="name">
                             <Form.Label><strong>Name</strong></Form.Label>
-                            <Form.Control type="text" placeholder="Enter your name" required style={{ marginBottom: '10px' }} />
+                            <Form.Control type="text" 
+                                          placeholder="Enter your name" 
+                                          required style={{ marginBottom: '10px' }} 
+                            />
+
                             <Form.Control.Feedback type="invalid">Valid name is required</Form.Control.Feedback>
                         </Form.Group>
                     </div>
@@ -131,6 +139,3 @@ function RequestForm() {
 }
 
 export default RequestForm;
-
-
-
