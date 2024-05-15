@@ -18,10 +18,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Create a request
 app.post("/api/create", async (req, res) => {
     try {
-        const { name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, end_date, hrs_day, description } = req.body;
+        const { name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, end_date, hrs_day, description, status } = req.body;
         const newRequest = await pool.query(
-            "INSERT INTO requests (name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, end_date, hrs_day, description) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
-            [name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, end_date, hrs_day, description]
+            "INSERT INTO requests (name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, end_date, hrs_day, description, status) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *",
+            [name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, end_date, hrs_day, description, status]
         );
 
         res.json(newRequest.rows[0]);
@@ -57,10 +57,10 @@ app.get("/api/requests/:id", async (req, res) => {
 app.put("/api/requests/:id", async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, end_date, hrs_day, description } = req.body;
+        const { name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, end_date, hrs_day, description, status } = req.body;
         const updateRequest = await pool.query(
-            "UPDATE requests SET name = $1, product_team_name = $2, timesheet_code = $3, email = $4, support_team_required = $5, skills_required = $6, support_type = $7, priority = $8, start_date = $9, end_date = $10, hrs_day = $11, description = $12 WHERE id = $13",
-            [name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, end_date, hrs_day, description, id]
+            "UPDATE requests SET name = $1, product_team_name = $2, timesheet_code = $3, email = $4, support_team_required = $5, skills_required = $6, support_type = $7, priority = $8, start_date = $9, end_date = $10, hrs_day = $11, description = $12, status = $13 WHERE id = $13",
+            [name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, end_date, hrs_day, description, status, id]
         );
 
         res.json("Request was updated");
@@ -89,6 +89,6 @@ app.listen(5000, () => {
 
 
 
-//everything above here - following tutorial - https://www.youtube.com/watch?v=ldYcgPKEZC8
+//everything above here - following tutorial - https://www.youtube.com/watch?v=ldYcgPKEZC8 - 32.38 mins
 //everything below here is to be rewritten 
 
