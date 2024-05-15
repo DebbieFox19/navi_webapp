@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { fragment }from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,6 +18,7 @@ import Homepage from './pages/Homepage';
 
 function App() {
   return (
+   
     <BrowserRouter>
       <div className="App">
         <NavBar />
@@ -42,6 +43,7 @@ function App() {
           <p style={{ margin: "0", fontSize: "12px", color: "#888" }}>© 2024 Debbie Fox. All rights reserved.</p>
         </footer>
       </div>
+      <fragment></fragment>
     </BrowserRouter>
   );
 }
