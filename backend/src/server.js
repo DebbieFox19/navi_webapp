@@ -81,13 +81,24 @@ app.get("/api/capacity", async (req, res) => {
     }
 });
 
+//Get capacity by team 
+app.get("/api/capacity/:team_id", async (req, res) => {
+    try {
+        const { team_id } = req.params;
+        const capacity = await pool.query("SELECT * FROM capacity WHERE team_id = $1", [team_id]);
+        res.json(capacity.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
 //Create a Capacity record
 app.post("/api/capacitycreate", async (req, res) => {
     try {
-        const { team_id, team, day, week, year, total_capacity, available_capacity, booked_capacity } = req.body;
+        const { team_id, team, day, total_capacity, available_capacity, booked_capacity } = req.body;
         const newRecord = await pool.query(
-            "INSERT INTO capacity (team_id, team, day, week, year, total_capacity, available_capacity, booked_capacity) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
-            [team_id, team, day, week, year, total_capacity, available_capacity, booked_capacity]
+            "INSERT INTO capacity (team_id, team, day, total_capacity, available_capacity, booked_capacity) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
+            [team_id, team, day, total_capacity, available_capacity, booked_capacity]
         );
 
         res.json(newRecord.rows[0]);

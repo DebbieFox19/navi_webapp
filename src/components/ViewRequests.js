@@ -65,7 +65,7 @@ const deleteRequest = async (id) => {
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Hours Required</th>
-                            <th>Desciption</th>
+                            <th>Description</th>
                             <th>Status</th>
                             <th>View Data</th>
                             <th>Delete Record</th>

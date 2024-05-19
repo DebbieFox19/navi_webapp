@@ -6,7 +6,7 @@ import React, { Fragment, useEffect, useState } from "react";
 
 
 
-//View request function
+//View Capacity function
 
 const ViewCapacity = () => {
 
@@ -26,10 +26,11 @@ const ViewCapacity = () => {
     useEffect(() => {
         getCapacity();
     } , []);
+    
 
 
 
-    //Delete request function
+    //Delete record function
 
 const deleteRecord = async (id) => {
     try {
@@ -56,8 +57,6 @@ const deleteRecord = async (id) => {
                             <th>ID</th>
                             <th>Team</th>
                             <th>Day</th>
-                            <th>Week</th>
-                            <th>Year</th>
                             <th>Total Capacity</th>
                             <th>Available Capacity</th>
                             <th>Booked Capacity</th>
@@ -71,8 +70,6 @@ const deleteRecord = async (id) => {
                                 <td>{record.id}</td>
                                 <td>{record.team}</td>
                                 <td>{record.day}</td>
-                                <td>{record.week}</td>
-                                <td>{record.year}</td>
                                 <td>{record.total_capacity}</td>
                                 <td>{record.available_capacity}</td>
                                 <td>{record.booked_capacity}</td>
