@@ -53,6 +53,17 @@ app.get("/api/requests/:id", async (req, res) => {
 });
 
 //Get a request by Support Team
+app.get("/api/requests/:support_team_required", async (req, res) => {
+    try {
+        const { support_team_required } = req.params;
+        const request = await pool.query("SELECT * FROM requests WHERE support_team_required = $1", [support_team_required]);
+        res.json(request.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+
 //UPDATE a request
 app.put("/api/requests/:id", async (req, res) => {
     try {
