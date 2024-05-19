@@ -1,4 +1,4 @@
-import React, { fragment , useState} from 'react';
+import React, { Fragment , useState} from 'react';
 import { Form, Button } from 'react-bootstrap';
 
 
@@ -60,7 +60,7 @@ const [status, setStatus] = useState('Pending');
     return (
         
         <div style={{ backgroundColor: '#BED3AB', padding: '40px', borderRadius: '30px' }}>
-            <fragment>
+            <Fragment>
             <Form onSubmit={handleSubmit}>
             <p>Please capture as much information as possible in the form to help the allocated team deal with your request.</p>
             <br />
@@ -262,7 +262,7 @@ const [status, setStatus] = useState('Pending');
                 <p>Once you have submitted your request, it will be sent to the Head of the specified department to approve.</p>
 
             </Form>
-            </fragment>
+            </Fragment>
         </div>
     );
 }

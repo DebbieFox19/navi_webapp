@@ -1,6 +1,7 @@
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import CreateRequestForm from '../components/CreateRequestForm';
+
 
 function Request() {
     return (
@@ -10,9 +11,9 @@ function Request() {
 
             <div className="request-body" style={{ margin: '40px' }}>
                 <br />
-                <fragment>
+                <Fragment>
                 <CreateRequestForm />
-                </fragment>
+                </Fragment>
             </div>            
         </div>
     );
