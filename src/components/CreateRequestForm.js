@@ -185,7 +185,7 @@ const [status, setStatus] = useState('Pending');
                     <div className="col-md-4 mb-2">
                         <Form.Group controlId="start_date">
                             <Form.Label><strong>Start Date</strong></Form.Label>
-                            <Form.Control   type="date" 
+                            <Form.Control   type="date" dateformat="DD/MM/YYYY"
                                             placeholder="Select start date" 
                                             required style={{ marginBottom: '10px' }} 
                                             value = {start_date}
@@ -198,7 +198,7 @@ const [status, setStatus] = useState('Pending');
                     <div className="col-md-4 mb-2">
                         <Form.Group controlId="end_date">
                             <Form.Label><strong>End Date</strong></Form.Label>
-                            <Form.Control   type="date" 
+                            <Form.Control   type="date" dateformat="DD/MM/YYYY" 
                                             placeholder="Select end date" 
                                             required style={{ marginBottom: '10px' }}
                                             value = {end_date}

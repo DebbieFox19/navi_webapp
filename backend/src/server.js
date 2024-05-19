@@ -41,28 +41,6 @@ app.get("/api/requests", async (req, res) => {
     }
 });
 
-//GET a request
-app.get("/api/requests/:id", async (req, res) => {
-    try {
-        const { id } = req.params;
-        const request = await pool.query("SELECT * FROM requests WHERE id = $1", [id]);
-        res.json(request.rows[0]);
-    } catch (err) {
-        console.error(err.message);
-    }
-});
-
-//Get a request by Support Team
-app.get("/api/requests/:support_team_required", async (req, res) => {
-    try {
-        const { support_team_required } = req.params;
-        const request = await pool.query("SELECT * FROM requests WHERE support_team_required = $1", [support_team_required]);
-        res.json(request.rows);
-    } catch (err) {
-        console.error(err.message);
-    }
-});
-
 
 //UPDATE a request
 app.put("/api/requests/:id", async (req, res) => {
@@ -79,12 +57,52 @@ app.put("/api/requests/:id", async (req, res) => {
         console.error(err.message);
     }
 });
+
 //DELETE a request
 app.delete("/api/requests/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const deleteRequest = await pool.query("DELETE FROM requests WHERE id = $1", [id]);
         res.json("Request was deleted");
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+
+///CAPACITY
+//GET Capacity
+app.get("/api/capacity", async (req, res) => {
+    try {
+        const allCapacity = await pool.query("SELECT * FROM capacity ORDER BY id ASC");
+        res.json(allCapacity.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+//Create a Capacity record
+app.post("/api/capacitycreate", async (req, res) => {
+    try {
+        const { team_id, team, day, week, year, total_capacity, available_capacity, booked_capacity } = req.body;
+        const newRecord = await pool.query(
+            "INSERT INTO capacity (team_id, team, day, week, year, total_capacity, available_capacity, booked_capacity) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+            [team_id, team, day, week, year, total_capacity, available_capacity, booked_capacity]
+        );
+
+        res.json(newRecord.rows[0]);
+    } catch (err) {
+        console.error(err.message);
+    }
+
+});
+
+//DELETE a record
+app.delete("/api/capacity/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleteRecord = await pool.query("DELETE FROM capacity WHERE id = $1", [id]);
+        res.json("Record was deleted");
     } catch (err) {
         console.error(err.message);
     }

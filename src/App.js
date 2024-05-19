@@ -12,6 +12,7 @@ import RequestManagement from './pages/RequestManagement';
 import SignInPage from './pages/SignIn';
 import CreateAccountPage from './pages/CreateAccount';
 import Homepage from './pages/Homepage';
+import Capacity from './pages/Capacity';
 
 
 //Function that loads the page based on url with wrappers that provide authcontext to all childres and checks if user is logged in.
@@ -33,6 +34,7 @@ function App() {
               <Route path="/Request" element={<ProtectedRoute> <Request /> </ProtectedRoute>} />
               <Route path="/RequestManagement" element={<ProtectedRoute> <RequestManagement /> </ProtectedRoute>} />
               <Route path="/CreateAccount" element={<CreateAccountPage />} />
+              <Route path="/Capacity" element={<ProtectedRoute> <Capacity /> </ProtectedRoute>} />
             </Routes>
           </UserAuthContextProvider>
         </div>

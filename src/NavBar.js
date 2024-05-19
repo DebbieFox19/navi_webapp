@@ -28,11 +28,17 @@ function NavBar() {
                     </Navbar.Brand>
                     <Nav className="ml-auto" style={{ padding: '0 10px' }}>
                         <Nav.Link href="./">Home</Nav.Link>
-                        <span style={{ padding: '0 10px' }}></span> {/* Add padding here */}
+                        <span style={{ padding: '0 10px' }}></span>
+
                         <Nav.Link href="./Request">Raise Request</Nav.Link>
                         <span style={{ padding: '0 10px' }}></span>
+
                         <Nav.Link href="./RequestManagement">Request Management</Nav.Link>
                         <span style={{ padding: '0 10px' }}></span>
+
+                        <Nav.Link href="./Capacity">Capacity</Nav.Link>
+                        <span style={{ padding: '0 10px' }}></span>
+                        
                         {user
                         ? <button style={{backgroundColor: '#BED3AB', borderColor: '#BED3AB', color: '#06040A', fontWeight: 'bold'}} className="btn btn-outline-success" onClick={() => {
                             signOut(getAuth());
