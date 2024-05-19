@@ -34,7 +34,7 @@ app.post("/api/create", async (req, res) => {
 //GET all requests
 app.get("/api/requests", async (req, res) => {
     try {
-        const allRequests = await pool.query("SELECT * FROM requests");
+        const allRequests = await pool.query("SELECT * FROM requests ORDER BY id ASC");
         res.json(allRequests.rows);
     } catch (err) {
         console.error(err.message);
@@ -70,7 +70,7 @@ app.put("/api/requests/:id", async (req, res) => {
         const { id } = req.params;
         const { name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, end_date, hrs_day, description, status } = req.body;
         const updateRequest = await pool.query(
-            "UPDATE requests SET name = $1, product_team_name = $2, timesheet_code = $3, email = $4, support_team_required = $5, skills_required = $6, support_type = $7, priority = $8, start_date = $9, end_date = $10, hrs_day = $11, description = $12, status = $13 WHERE id = $13",
+            "UPDATE requests SET name = $1, product_team_name = $2, timesheet_code = $3, email = $4, support_team_required = $5, skills_required = $6, support_type = $7, priority = $8, start_date = $9, end_date = $10, hrs_day = $11, description = $12, status = $13 WHERE id = $14",
             [name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, end_date, hrs_day, description, status, id]
         );
 
