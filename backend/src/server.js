@@ -108,6 +108,23 @@ app.post("/api/capacitycreate", async (req, res) => {
 
 });
 
+//UPDATE a Capacity Record
+app.put("/api/capacity/:id", async (
+    req, res) => {
+    try {
+        const { id } = req.params;
+        const { team_id, team, day, total_capacity, available_capacity, booked_capacity } = req.body;
+        const updateRecord = await pool.query(
+            "UPDATE capacity SET team_id = $1, team = $2, day = $3, total_capacity = $4, available_capacity = $5, booked_capacity = $6 WHERE id = $7",
+            [team_id, team, day, total_capacity, available_capacity, booked_capacity, id]
+        );
+
+        res.json("Record was updated");
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
 //DELETE a record
 app.delete("/api/capacity/:id", async (req, res) => {
     try {

@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-
+import UpdateRecord from "./UpdateCapacity";
 
 
 
@@ -56,7 +56,7 @@ const deleteRecord = async (id) => {
                         <tr>
                             <th>ID</th>
                             <th>Team</th>
-                            <th>Day</th>
+                            <th>Date</th>
                             <th>Total Capacity</th>
                             <th>Available Capacity</th>
                             <th>Booked Capacity</th>
@@ -69,11 +69,13 @@ const deleteRecord = async (id) => {
                             <tr key={record.id}>
                                 <td>{record.id}</td>
                                 <td>{record.team}</td>
-                                <td>{record.day}</td>
-                                <td>{record.total_capacity}</td>
-                                <td>{record.available_capacity}</td>
-                                <td>{record.booked_capacity}</td>
-                                <td>Update</td>
+                                <td>{new Date(record.day).toLocaleDateString('en-GB')}</td>
+                                <td>{parseInt(record.total_capacity)}</td>
+                                <td>{parseInt(record.available_capacity)}</td>
+                                <td>{parseInt(record.booked_capacity)}</td>
+                                <td>
+                                <UpdateRecord record={record} />
+                                </td>
                                 <td>
                                     <button className="btn btn-primary" onClick={() => deleteRecord(record.id)}>Delete</button>
                                 </td>

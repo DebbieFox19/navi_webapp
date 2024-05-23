@@ -47,97 +47,91 @@ const CreateCapacityRequest = () => {
         
 
     return (
-        
         <div style={{ backgroundColor: '#BED3AB', padding: '40px', borderRadius: '30px', margin: '60px' }}>
             <Fragment>
-            <Form onSubmit={handleSubmit}>
-            <p>Please fill in the available capacity for your team.</p>
-            <br />
-                <div className="row">
-                    <div className="col-md-4 mb-3">
-                        <Form.Group controlId="team_id">
-                            <Form.Label><strong>Team ID</strong></Form.Label>
-                            <Form.Control as="select" 
-                                                style={{ marginBottom: '10px' }}
-                                                value={team_id}
-                                                onChange={(e) => setTeam_id(e.target.value)}
-                            >
-                                <option value="">Select Team...</option>
-                                <option value="System Build">SB</option>
-                                <option value="Infrastructure Services">IS</option>
-                            </Form.Control>
-                        </Form.Group>
-                    </div>
+                <Form onSubmit={handleSubmit}>
+                    <p>Please fill in the available capacity for your team.</p>
+                    <br />
+                    <div className="row">
+                        <div className="col-md-4 mb-3">
+                            <Form.Group controlId="team">
+                                <Form.Label><strong>Team</strong></Form.Label>
+                                <Form.Control as="select"
+                                    style={{ marginBottom: '10px' }}
+                                    value={team}
+                                    onChange={(e) => {
+                                        setTeam(e.target.value);
+                                        if (e.target.value === 'System Build') {
+                                            setTeam_id('SB');
+                                        } else if (e.target.value === 'Infrastructure Services') {
+                                            setTeam_id('IS');
+                                        } else {
+                                            setTeam_id('');
+                                        }
+                                    }}
+                                >
+                                    <option value="">Select Team...</option>
+                                    <option value="System Build">System Build</option>
+                                    <option value="Infrastructure Services">Infrastructure Services</option>
+                                </Form.Control>
+                            </Form.Group>
+                        </div>
 
-                    <div className="col-md-4 mb-3">
-                        <Form.Group controlId="team">
-                            <Form.Label><strong>Team</strong></Form.Label>
-                            <Form.Control as="select" 
-                                                style={{ marginBottom: '10px' }}
-                                                value={team}
-                                                onChange={(e) => setTeam(e.target.value)}
-                            >
-                                <option value="">Select Team...</option>
-                                <option value="System Build">System Build</option>
-                                <option value="Infrastructure Services">Infrastructure Services</option>
-                            </Form.Control>
-                        </Form.Group>
-                    </div>
-                    
-                    <div className="col-md-4 mb-2">
-                        <Form.Group controlId="day">
-                            <Form.Label><strong>Date</strong></Form.Label>
-                            <Form.Control   type="date" dateformat="DD/MM/YYYY"
-                                            placeholder="Select date" 
-                                            required style={{ marginBottom: '10px' }} 
-                                            value = {day}
-                                            onChange = {(e) => setDay(e.target.value)}
-                            />
-                        </Form.Group>
-                    </div>
-                </div>
-                    <div className = "row">
+
                         <div className="col-md-4 mb-2">
-                        <Form.Group controlID = "total_capacity">
-                            <Form.Label><strong>Total Capacity</strong></Form.Label>
-                            <Form.Control type="number"
-                                            placeholder="Total Capacity" 
-                                            required style={{ marginBottom: '10px' }} 
-                                            value = {total_capacity}
-                                            onChange = {(e) => setTotal_capacity(e.target.value)}
-                            />
-                        </Form.Group>
+                            <Form.Group controlId="day">
+                                <Form.Label><strong>Date</strong></Form.Label>
+                                <Form.Control type="date" dateformat="DD/MM/YYYY"
+                                    placeholder="Select date"
+                                    required style={{ marginBottom: '10px' }}
+                                    value={day}
+                                    onChange={(e) => setDay(e.target.value)}
+                                />
+                            </Form.Group>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-4 mb-2">
+                            <Form.Group controlID="total_capacity">
+                                <Form.Label><strong>Total Capacity</strong></Form.Label>
+                                <Form.Control type="number"
+                                    placeholder="Total Capacity"
+                                    required style={{ marginBottom: '10px' }}
+                                    value={total_capacity}
+                                    onChange={(e) => setTotal_capacity(e.target.value)}
+                                />
+                            </Form.Group>
                         </div>
                         <div className="col-md-4 mb-2">
-                        <Form.Group controlID = "available_capacity">
-                            <Form.Label><strong>Available Capacity</strong></Form.Label>
-                            <Form.Control type="number"
-                                            placeholder="Available Capacity" 
-                                            required style={{ marginBottom: '10px' }} 
-                                            value = {available_capacity}
-                                            onChange = {(e) => setAvailable_capacity(e.target.value)}
-                            />
-                        </Form.Group>
+                            <Form.Group controlID="available_capacity">
+                                <Form.Label><strong>Available Capacity</strong></Form.Label>
+                                <Form.Control type="number"
+                                    placeholder="Available Capacity"
+                                    required style={{ marginBottom: '10px' }}
+                                    value={available_capacity}
+                                    onChange={(e) => setAvailable_capacity(e.target.value)}
+                                />
+                            </Form.Group>
                         </div>
                         <div className="col-md-4 mb-2">
-                            <Form.Group controlID = "booked_capacity">
-                            <Form.Label><strong>Booked Capacity</strong></Form.Label>
-                            <Form.Control type="number"
-                                            placeholder="Booked Capacity" 
-                                            required style={{ marginBottom: '10px' }} 
-                                            value = {booked_capacity}
-                                            onChange = {(e) => setBooked_capacity(e.target.value)}
-                            />
-                        </Form.Group>
+                            <Form.Group controlID="booked_capacity">
+                                <Form.Label><strong>Booked Capacity</strong></Form.Label>
+                                <Form.Control type="number"
+                                    placeholder="Booked Capacity"
+                                    required style={{ marginBottom: '10px' }}
+                                    value={booked_capacity}
+                                    onChange={(e) => setBooked_capacity(e.target.value)}
+                                />
+                            </Form.Group>
                         </div>
 
                     </div>
 
-                <Button variant="primary" type="submit" style={{ backgroundColor: '#016236', color: 'white', marginBottom: '10px' }}>
-                    Submit
-                </Button>
-      
-            </Form>
+                    <Button variant="primary" type="submit" style={{ backgroundColor: '#016236', color: 'white', marginBottom: '10px' }}>
+                        Submit
+                    </Button>
+
+                </Form>
             </Fragment>
         </div>
     );
