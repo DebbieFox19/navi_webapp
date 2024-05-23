@@ -1,9 +1,8 @@
 
 import React, {Fragment} from 'react';
-import ViewCapacity from '../components/ViewCapacity';
-import { Button, Form } from "react-bootstrap";
+import ViewCapacity from '../components/XXViewCapacity';
 import CreateCapacityRequest from '../components/CreateCapacityRecord';
-
+import TeamPickerForm from '../components/TeamPickerForm';
 
 
 
@@ -12,9 +11,7 @@ function Record() {
         <Fragment>
             <h1 style={{ textAlign: 'center', marginBottom: '5px' }}>Capacity</h1>
             <CreateCapacityRequest />
-           
-           
-            <ViewCapacity />  
+            <TeamPickerForm />
         </Fragment>
     );
 }
