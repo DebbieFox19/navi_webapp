@@ -137,6 +137,18 @@ app.delete("/api/capacity/:id", async (req, res) => {
 });
 
 
+//HOMEPAGE SUMMARY DATA
+
+//Get Count of pending requests by team and priority
+app.get("/api/summary", async (req, res) => {
+    try {
+        const summary = await pool.query("SELECT support_team_required, priority, COUNT(*) FROM requests WHERE status = 'Pending' GROUP BY support_team_required, priority");
+        res.json(summary.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
 
 app.listen(5000, () => {
     console.log("Server is running on port 5000");
