@@ -17,11 +17,7 @@ const ViewRequests = () => {
             const response = await fetch("http://localhost:5000/api/requests");
             const jsonData = await response.json();
             setRequests(jsonData);
-            
-            console.log (typeof jsonData[0].start_date);
-            const date = Date.parse(jsonData[0].start_date);
-            // option 1, loop over each item and add a new value into the object with represents that row
-            console.log(date);
+
         } catch (err) {
             console.error(err.message);
         }
@@ -88,9 +84,9 @@ const deleteRequest = async (id) => {
                                 <td>{request.skills_required}</td>
                                 <td>{request.support_type}</td>
                                 <td>{request.priority}</td>
-                                <td>{Date.parse(request.start_date).toString("yyyy-mm-dd")}</td>
-                                <td>{request.end_date}</td>
-                                <td>{request.hrs_day}</td>
+                                <td>{new Date(request.start_date).toLocaleDateString('en-GB')}</td>
+                                <td>{new Date(request.end_date).toLocaleDateString('en-GB')}</td>
+                                <td>{parseInt(request.hrs_day)}</td>
                                 <td>{request.description}</td>
                                 <td>{request.status}</td>
                                 <td>
