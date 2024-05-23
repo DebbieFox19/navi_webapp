@@ -48,8 +48,8 @@ const deleteRequest = async (id) => {
 
     return (
         <Fragment>
-            
             <div style={{ backgroundColor: '#BED3AB', padding: '40px', borderRadius: '30px', margin: '60px' }}>
+                <div style={{overflowX: 'auto'}}>
                 <table class="table table-hover table-responsive-md table align-middle table caption-top">
                     <caption><h2>List of Requests</h2></caption>
                     <thead>
@@ -99,6 +99,7 @@ const deleteRequest = async (id) => {
                         ))}
                     </tbody>
                 </table>
+            </div>
             </div>
         </Fragment>
     )
