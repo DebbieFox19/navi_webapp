@@ -23,6 +23,8 @@ const CreateCapacityRequest = () => {
             body: JSON.stringify(body)
             });
             
+            window.location = "/Capacity";
+            
             if (response.ok) {
             // Show success message to the user
             alert("Request created successfully!");

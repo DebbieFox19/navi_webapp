@@ -142,12 +142,44 @@ app.delete("/api/capacity/:id", async (req, res) => {
 //Get Count of pending requests by team and priority
 app.get("/api/summary", async (req, res) => {
     try {
-        const summary = await pool.query("SELECT support_team_required, priority, COUNT(*) FROM requests WHERE status = 'Pending' GROUP BY support_team_required, priority");
+        const summary = await pool.query("SELECT COUNT(status) as Pending ,priority ,support_team_required FROM requests WHERE status = 'Pending' group by priority, support_team_required");
         res.json(summary.rows);
     } catch (err) {
         console.error(err.message);
     }
 });
+
+//Get Count of records by support_team_required
+app.get("/api/summary/:support_team_required", async (req, res) => {
+    try {
+        const summary = await pool.query("SELECT COUNT(id) as count ,support_team_required FROM requests group by support_team_required")
+        res.json(summary.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+//GET Capacity info by Date selected
+app.post('/api/date', async (req, res) => {
+    const { date } = req.body;
+    console.log('Received date:', date); // Debugging line
+  
+    if (!date) {
+      return res.status(400).send('Date is required');
+    }
+  
+    try {
+      const query = 'SELECT * FROM capacity WHERE day = $1::date';
+      const result = await pool.query(query, [date]);
+  
+      res.json(result.rows);
+    } catch (error) {
+      console.error('Error querying database:', error);
+      res.status(500).send('Internal server error');
+    }
+  });
+
+
 
 
 app.listen(5000, () => {

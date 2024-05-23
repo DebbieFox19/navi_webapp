@@ -1,15 +1,14 @@
 import React from 'react';
+import ViewSummary from '../components/ViewSummaryData';
+import DatePickerForm from '../components/DatePickerForm';
 
 
 export default function Homepage() {
     return (
         <>
             <div className="container">
-                <h1>NAVI</h1>
-                <br />
-                <p>section here to show:</p>
-                <p>total number of pending requests</p>
-                <p>capacity for given team on selected day</p>
+                <ViewSummary />
+                <DatePickerForm />
 
             </div>
         </>
