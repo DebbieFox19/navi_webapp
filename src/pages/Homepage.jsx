@@ -5,9 +5,12 @@ export default function Homepage() {
     return (
         <>
             <div className="container">
-                <h1>Welcome to our Engaging Homepage!</h1>
-                <p>Thank you for visiting our website. We strive to provide you with the best user experience.</p>
-                <button>Get Started</button>
+                <h1>NAVI</h1>
+                <br />
+                <p>section here to show:</p>
+                <p>total number of pending requests</p>
+                <p>capacity for given team on selected day</p>
+
             </div>
         </>
     );

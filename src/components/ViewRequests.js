@@ -16,8 +16,12 @@ const ViewRequests = () => {
         try {
             const response = await fetch("http://localhost:5000/api/requests");
             const jsonData = await response.json();
-            
             setRequests(jsonData);
+            
+            console.log (typeof jsonData[0].start_date);
+            const date = Date.parse(jsonData[0].start_date);
+            // option 1, loop over each item and add a new value into the object with represents that row
+            console.log(date);
         } catch (err) {
             console.error(err.message);
         }
@@ -48,6 +52,7 @@ const deleteRequest = async (id) => {
 
     return (
         <Fragment>
+            
             <div style={{ backgroundColor: '#BED3AB', padding: '40px', borderRadius: '30px', margin: '60px' }}>
                 <table class="table table-hover table-responsive-md table align-middle table caption-top">
                     <caption><h2>List of Requests</h2></caption>
@@ -83,7 +88,7 @@ const deleteRequest = async (id) => {
                                 <td>{request.skills_required}</td>
                                 <td>{request.support_type}</td>
                                 <td>{request.priority}</td>
-                                <td>{request.start_date}</td>
+                                <td>{Date.parse(request.start_date).toString("yyyy-mm-dd")}</td>
                                 <td>{request.end_date}</td>
                                 <td>{request.hrs_day}</td>
                                 <td>{request.description}</td>
