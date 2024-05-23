@@ -179,7 +179,25 @@ app.post('/api/date', async (req, res) => {
     }
   });
 
-
+//GET Capacity info by Team selected
+app.post('/api/team', async (req, res) => {
+    const { team } = req.body;
+    console.log('Received team:', team); // Debugging line
+  
+    if (!team) {
+      return res.status(400).send('Team is required');
+    }
+  
+    try {
+      const query = 'SELECT * FROM capacity WHERE team = $1';
+      const result = await pool.query(query, [team]);
+  
+      res.json(result.rows);
+    } catch (error) {
+      console.error('Error querying database:', error);
+      res.status(500).send('Internal server error');
+    }
+  });
 
 
 app.listen(5000, () => {
