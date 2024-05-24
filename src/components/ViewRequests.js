@@ -64,7 +64,6 @@ const deleteRequest = async (id) => {
                             <th>Support Type</th>
                             <th>Priority</th>
                             <th>Start Date</th>
-                            <th>End Date</th>
                             <th>Hours Required</th>
                             <th>Description</th>
                             <th>Status</th>
@@ -85,7 +84,6 @@ const deleteRequest = async (id) => {
                                 <td>{request.support_type}</td>
                                 <td>{request.priority}</td>
                                 <td>{new Date(request.start_date).toLocaleDateString('en-GB')}</td>
-                                <td>{new Date(request.end_date).toLocaleDateString('en-GB')}</td>
                                 <td>{parseInt(request.hrs_day)}</td>
                                 <td>{request.description}</td>
                                 <td>{request.status}</td>
@@ -106,9 +104,3 @@ const deleteRequest = async (id) => {
 };
 
 export default ViewRequests;
-
-//next steps
-//create api request for get data based on id 
-//assign to view so that it pulls data intop the form
-//add form to bottom of page
-//establish edit function
