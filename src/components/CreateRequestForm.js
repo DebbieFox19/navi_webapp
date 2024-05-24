@@ -183,10 +183,10 @@ const [status, setStatus] = useState('Pending');
                     <div className="col-md-4 mb-2">
                         <Form.Group controlId="start_date">
                             <Form.Label><strong>Start Date</strong></Form.Label>
-                            <Form.Control   type="date" dateformat="DD/MM/YYYY"
+                            <Form.Control   type="date" 
                                             placeholder="Select start date" 
                                             required style={{ marginBottom: '10px' }} 
-                                            value = {new Date(start_date).toLocaleDateString('en-GB')}
+                                            value = {(start_date)}
                                             onChange = {(e) => setStart_date(e.target.value)}
                             />
                             <Form.Control.Feedback type="invalid">Start date is required</Form.Control.Feedback>
@@ -245,7 +245,7 @@ const [status, setStatus] = useState('Pending');
                     Submit
                 </Button>
                 <p>Once you have submitted your request, it will be sent to the Head of the specified department to approve.</p>
-
+               {(start_date)}
             </Form>
             </Fragment>
         </div>

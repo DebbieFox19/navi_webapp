@@ -157,7 +157,7 @@ const UpdateRequest = ({ request }) => {
                             <Form.Control   type="date"
                                             placeholder="Select start date" 
                                             required style={{ marginBottom: '10px' }} 
-                                            value = {new Date(start_date).toLocaleDateString('en-GB')}
+                                            value = {(start_date)}
                                             onChange = {(e) => setStart_date(e.target.value)}
                             />
                             

@@ -25,7 +25,7 @@ app.post("/api/create", async (req, res) => {
         );
 
         res.json(newRequest.rows[0]);
-        console.log(newRequest.rows[0]);
+        //console.log(newRequest.rows[0]);
     } catch (err) {
         console.error(err.message);
     }

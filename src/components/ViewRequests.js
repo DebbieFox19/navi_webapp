@@ -99,6 +99,7 @@ const deleteRequest = async (id) => {
                 </table>
             </div>
             </div>
+           
         </Fragment>
     )
 };
