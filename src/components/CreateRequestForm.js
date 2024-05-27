@@ -12,7 +12,6 @@ const [skills_required, setSkills_required] = useState('');
 const [support_type, setSupport_type] = useState('');
 const [priority, setPriority] = useState('');
 const [start_date, setStart_date] = useState('');
-const [end_date, setEnd_date] = useState('');
 const [hrs_day, setHrs_day] = useState('');
 const [description, setDescription] = useState('');
 const [status, setStatus] = useState('Pending');
@@ -21,7 +20,7 @@ const [status, setStatus] = useState('Pending');
         const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const body = {name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, end_date, hrs_day, description, status};
+            const body = {name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, hrs_day, description, status};
             const response = await fetch("http://localhost:5000/api/create", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -41,7 +40,6 @@ const [status, setStatus] = useState('Pending');
             setSupport_type('');
             setPriority('');
             setStart_date('');
-            setEnd_date('');
             setHrs_day('');
             setDescription('');
             setStatus('Pending');
@@ -185,26 +183,13 @@ const [status, setStatus] = useState('Pending');
                     <div className="col-md-4 mb-2">
                         <Form.Group controlId="start_date">
                             <Form.Label><strong>Start Date</strong></Form.Label>
-                            <Form.Control   type="date" dateformat="DD/MM/YYYY"
+                            <Form.Control   type="date" 
                                             placeholder="Select start date" 
                                             required style={{ marginBottom: '10px' }} 
-                                            value = {start_date}
+                                            value = {(start_date)}
                                             onChange = {(e) => setStart_date(e.target.value)}
                             />
                             <Form.Control.Feedback type="invalid">Start date is required</Form.Control.Feedback>
-                        </Form.Group>
-                    </div>
-
-                    <div className="col-md-4 mb-2">
-                        <Form.Group controlId="end_date">
-                            <Form.Label><strong>End Date</strong></Form.Label>
-                            <Form.Control   type="date" dateformat="DD/MM/YYYY" 
-                                            placeholder="Select end date" 
-                                            required style={{ marginBottom: '10px' }}
-                                            value = {end_date}
-                                            onChange = {(e) => setEnd_date(e.target.value)}
-                            />
-                            <Form.Control.Feedback type="invalid">End date is required</Form.Control.Feedback>
                         </Form.Group>
                     </div>
 
@@ -260,7 +245,7 @@ const [status, setStatus] = useState('Pending');
                     Submit
                 </Button>
                 <p>Once you have submitted your request, it will be sent to the Head of the specified department to approve.</p>
-
+               {(start_date)}
             </Form>
             </Fragment>
         </div>

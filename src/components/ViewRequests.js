@@ -6,6 +6,7 @@ import UpdateRequest from "./UpdateRequest";
 
 
 
+
 //View request function
 
 const ViewRequests = () => {
@@ -15,17 +16,20 @@ const ViewRequests = () => {
     const getRequests = async () => {
         try {
             const response = await fetch("http://localhost:5000/api/requests");
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const jsonData = await response.json();
+            console.log("Fetched requests:", jsonData); // Log the fetched data
             setRequests(jsonData);
-
         } catch (err) {
-            console.error(err.message);
+            console.error("Error fetching requests:", err.message);
         }
-    }
+    };
 
     useEffect(() => {
         getRequests();
-    } , []);
+    }, []);
 
 
 
@@ -33,16 +37,17 @@ const ViewRequests = () => {
 
 const deleteRequest = async (id) => {
     try {
-        const deleteRequest = await fetch(`http://localhost:5000/api/requests/${id}`, {
-            method: "DELETE"
+        const deleteResponse = await fetch(`http://localhost:5000/api/requests/${id}`, {
+            method: "DELETE",
         });
-
-        window.location = "/RequestManagement";
+        if (!deleteResponse.ok) {
+            throw new Error(`HTTP error! status: ${deleteResponse.status}`);
+        }
+        setRequests(requests.filter(request => request.id !== id));
     } catch (err) {
-        console.error(err.message);
+        console.error("Error deleting request:", err.message);
     }
-}
-
+};
 
 
 
@@ -64,7 +69,6 @@ const deleteRequest = async (id) => {
                             <th>Support Type</th>
                             <th>Priority</th>
                             <th>Start Date</th>
-                            <th>End Date</th>
                             <th>Hours Required</th>
                             <th>Description</th>
                             <th>Status</th>
@@ -84,8 +88,7 @@ const deleteRequest = async (id) => {
                                 <td>{request.skills_required}</td>
                                 <td>{request.support_type}</td>
                                 <td>{request.priority}</td>
-                                <td>{new Date(request.start_date).toLocaleDateString('en-GB')}</td>
-                                <td>{new Date(request.end_date).toLocaleDateString('en-GB')}</td>
+                                <td>{request.start_date}</td>
                                 <td>{parseInt(request.hrs_day)}</td>
                                 <td>{request.description}</td>
                                 <td>{request.status}</td>
@@ -101,14 +104,9 @@ const deleteRequest = async (id) => {
                 </table>
             </div>
             </div>
+           
         </Fragment>
     )
 };
 
 export default ViewRequests;
-
-//next steps
-//create api request for get data based on id 
-//assign to view so that it pulls data intop the form
-//add form to bottom of page
-//establish edit function

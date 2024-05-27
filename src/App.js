@@ -31,7 +31,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Homepage />} />
               <Route path="/signin" element={<SignInPage />} /> 
-              <Route path="/Request" element={<ProtectedRoute> <Request /> </ProtectedRoute>} />
+              <Route path="/Request" element={<Request />} />
               <Route path="/RequestManagement" element={<ProtectedRoute> <RequestManagement /> </ProtectedRoute>} />
               <Route path="/CreateAccount" element={<CreateAccountPage />} />
               <Route path="/Capacity" element={<ProtectedRoute> <Capacity /> </ProtectedRoute>} />
