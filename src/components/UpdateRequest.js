@@ -40,9 +40,15 @@ const UpdateRequest = ({ request }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
-            //console.log(response);
+            
+            if (response.status === 200) {
+                alert("Request updated successfully");
+                window.location = "/RequestManagement";
+            } else {
+                alert("There may not be sufficient capacity to approve the request for this day. Please check available capacity for selected team");;
+            }
 
-            window.location = "/RequestManagement";
+            
         } catch (err) {
             console.error(err.message);
         }

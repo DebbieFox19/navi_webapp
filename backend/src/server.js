@@ -54,21 +54,6 @@ app.get("/api/requests", async (req, res) => {
     }
 });
 
-//Update a request - working but doesn't update the capacity
-app.put("/api/requests/:id", async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, hrs_day, description, status } = req.body;
-        const updateRequest = await pool.query(
-            "UPDATE requests SET name = $1, product_team_name = $2, timesheet_code = $3, email = $4, support_team_required = $5, skills_required = $6, support_type = $7, priority = $8, start_date = $9, hrs_day = $10, description = $11, status = $12 WHERE id = $13",
-            [name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, hrs_day, description, status, id]
-        );
-
-        res.json("Request was updated");
-    } catch (err) {
-        console.error(err.message);
-    }
-});
 
 //Tomorrow - look at this code and try and get it working properly with date-fns
 //Current issue is that no records from capacity are returned, suspected due to date misalignment - parsed date shows date time  2024-05-20T23:00:00.000Z, formatted date shows YYYY-MM-DD 00:00:00
@@ -77,22 +62,17 @@ app.put("/api/requests/:id", async (req, res) => {
     const requestID = req.params.id;
     const { name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, hrs_day, description, status } = req.body;
 
-    // Convert the start_date from DD-MM-YYYY to YYYY-MM-DD
-    //const parsedDate = parse(start_date, 'dd-MM-yyyy', new Date());
-//console.log('Parsed date:', parsedDate); // Debugging line
-
     try {
         const request = await pool.query("SELECT * FROM requests WHERE id = $1", [requestID]);
-        
+//console.log('Request:', request.rows); // Debugging line
+
         if (!request.rows.length) {
             return res.status(404).send('Request not found');
         }
 
         if (status === 'Approved') {
-          //  const formattedDate = format(parsedDate, 'yyyy-MM-dd 00:00:00');
-//console.log('Formatted date:', formattedDate); // Debugging line
 
-            const capacity = await pool.query("SELECT * FROM capacity WHERE team = $1 AND day = $2", [product_team_name, start_date]);
+            const capacity = await pool.query("SELECT * FROM capacity WHERE team = $1 AND day = $2", [support_team_required, start_date]);
 //console.log('Capacity:', capacity.rows); // Debugging line
 
             if (!capacity.rows.length) {
@@ -100,13 +80,15 @@ app.put("/api/requests/:id", async (req, res) => {
             }
 
             const newAvailableCapacity = capacity.rows[0].available_capacity - hrs_day;
+            const newBookedCapacity = capacity.rows[0].booked_capacity + hrs_day;
 //console.log('New available capacity:', newAvailableCapacity); // Debugging line
+//console.log('New booked capacity:', newBookedCapacity); // Debugging line
 
             if (newAvailableCapacity < 0) {
                 return res.status(400).send('Not enough available hours');
             }
 
-            await pool.query("UPDATE capacity SET available_capacity = $1 WHERE team = $2 AND day = $3", [newAvailableCapacity, product_team_name, start_date]);
+            await pool.query("UPDATE capacity SET available_capacity = $1, booked_capacity = $4 WHERE team = $2 AND day = $3", [newAvailableCapacity, support_team_required, start_date, newBookedCapacity]);
         }
 
         const updateRequest = `UPDATE requests SET name = $1, product_team_name = $2, timesheet_code = $3, email = $4, support_team_required = $5, skills_required = $6, support_type = $7, priority = $8, start_date = $9, hrs_day = $10, description = $11, status = $12 WHERE id = $13`;

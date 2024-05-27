@@ -1,6 +1,5 @@
 
 import React, {Fragment} from 'react';
-import ViewCapacity from '../components/XXViewCapacity';
 import CreateCapacityRequest from '../components/CreateCapacityRecord';
 import TeamPickerForm from '../components/TeamPickerForm';
 
