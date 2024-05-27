@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
+import { parse, format } from 'date-fns';
 
 const UpdateRequest = ({ request }) => {
     const [id, setId] = useState(request.id); 
@@ -12,7 +13,7 @@ const UpdateRequest = ({ request }) => {
     const [skills_required, setSkills_required] = useState(request.skills_required);
     const [support_type, setSupport_type] = useState(request.support_type);
     const [priority, setPriority] = useState(request.priority);
-    const [start_date, setStart_date] = useState(request.start_date);
+    const [start_date, setStart_date] = useState(format(new Date(request.start_date), 'yyyy-MM-dd'));
     const [hrs_day, setHrs_day] = useState(request.hrs_day);
     const [description, setDescription] = useState(request.description);
     const [status, setStatus] = useState(request.status);
@@ -20,14 +21,26 @@ const UpdateRequest = ({ request }) => {
     
 
     const updateData = async (e) => {
+        e.preventDefault();
         try {
-            const body = { name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, hrs_day, description, status };
+            const body = { name, 
+                            product_team_name, 
+                            timesheet_code, 
+                            email, 
+                            support_team_required, 
+                            skills_required, 
+                            support_type, 
+                            priority, 
+                            start_date: format(parse(start_date, 'yyyy-MM-dd', new Date()), 'dd-MM-yyyy'),  
+                            hrs_day, 
+                            description, 
+                            status };
             const response = await fetch(`http://localhost:5000/api/requests/${request.id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
-            console.log(response);
+            //console.log(response);
 
             window.location = "/RequestManagement";
         } catch (err) {
@@ -155,9 +168,9 @@ const UpdateRequest = ({ request }) => {
                         <Form.Group controlId="start_date">
                             <Form.Label><strong>Start Date</strong></Form.Label>
                             <Form.Control   type="date"
-                                            placeholder="Select start date" 
-                                            required style={{ marginBottom: '10px' }} 
-                                            value = {(start_date)}
+                                            required 
+                                            style={{ marginBottom: '10px' }} 
+                                            value = {start_date}
                                             onChange = {(e) => setStart_date(e.target.value)}
                             />
                             
