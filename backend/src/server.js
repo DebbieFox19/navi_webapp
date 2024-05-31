@@ -55,9 +55,7 @@ app.get("/api/requests", async (req, res) => {
 });
 
 
-//Tomorrow - look at this code and try and get it working properly with date-fns
-//Current issue is that no records from capacity are returned, suspected due to date misalignment - parsed date shows date time  2024-05-20T23:00:00.000Z, formatted date shows YYYY-MM-DD 00:00:00
-// UPDATE a request and capacity when status is set to approved - NOT WORKING
+//Update a request and deduct hours if approved
 app.put("/api/requests/:id", async (req, res) => {
     const requestID = req.params.id;
     const { name, product_team_name, timesheet_code, email, support_team_required, skills_required, support_type, priority, start_date, hrs_day, description, status } = req.body;
