@@ -59,12 +59,17 @@ const UpdateRequest = ({ request }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+//ADD A SECTION HERE ON THE BUTTON THAT WILL ONLY PRESENT THE MODAL IF THE STATUS IS NOT APPROVED
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     return (
         <>
+        {request.status === 'Approved' ? null : (
             <Button variant="primary" onClick={handleShow}>
                 Update
             </Button>
-
+        )}
+            
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Update Request</Modal.Title>
