@@ -76,13 +76,6 @@ const UpdateRequest = ({ request }) => {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Group controlId="id">
-                            <Form.Label><strong>ID</strong></Form.Label>
-                            <Form.Control type="text"
-                                            required style={{ marginBottom: '10px' }}
-                                            value = {id}
-                            />
-                        </Form.Group>
                     <Form.Group controlId="name">
                             <Form.Label><strong>Name</strong></Form.Label>
                             <Form.Control type="text" 

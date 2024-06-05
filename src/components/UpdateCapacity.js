@@ -47,13 +47,6 @@ const UpdateRecord = ({ record }) => {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Group controlId="id">
-                            <Form.Label><strong>ID</strong></Form.Label>
-                            <Form.Control type="text"
-                                            required style={{ marginBottom: '10px' }}
-                                            value = {id}
-                            />
-                        </Form.Group>
                     <Form.Group controlId="Team">
                             <Form.Label><strong>Team</strong></Form.Label>
                             <Form.Control type="text" 
@@ -66,7 +59,7 @@ const UpdateRecord = ({ record }) => {
 
                     <Form.Group controlId="Date">
                             <Form.Label><strong>Date</strong></Form.Label>
-                            <Form.Control   type="text"  
+                            <Form.Control   type="date"  
                                             style={{ marginBottom: '10px' }} 
                                             value = {day}
                                             onChange = {(e) => setDay(e.target.value)}
@@ -74,7 +67,7 @@ const UpdateRecord = ({ record }) => {
                         </Form.Group>
                         <Form.Group controlId="Total Capacity">
                             <Form.Label><strong>Total Capacity</strong></Form.Label>
-                            <Form.Control type="text"
+                            <Form.Control type="number"
                                           required style={{ marginBottom: '10px' }}
                                           value = {total_capacity}
                                           onChange = {(e) => setTotal_capacity(e.target.value)}
@@ -82,7 +75,7 @@ const UpdateRecord = ({ record }) => {
                         </Form.Group>   
                         <Form.Group controlId="Available Capacity">
                             <Form.Label><strong>Available Capacity</strong></Form.Label>
-                            <Form.Control type="text"
+                            <Form.Control type="number"
                                           required style={{ marginBottom: '10px' }}
                                           value = {available_capacity}
                                           onChange = {(e) => setAvailable_capacity(e.target.value)}
@@ -90,7 +83,7 @@ const UpdateRecord = ({ record }) => {
                         </Form.Group>
                         <Form.Group controlId="Booked Capacity">
                             <Form.Label><strong>Booked Capacity</strong></Form.Label>
-                            <Form.Control type="text"
+                            <Form.Control type="number"
                                           required style={{ marginBottom: '10px' }}
                                           value = {booked_capacity}
                                           onChange = {(e) => setBooked_capacity(e.target.value)}
