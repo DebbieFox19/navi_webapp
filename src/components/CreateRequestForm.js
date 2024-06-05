@@ -245,7 +245,7 @@ const [status, setStatus] = useState('Pending');
                     Submit
                 </Button>
                 <p>Once you have submitted your request, it will be sent to the Head of the specified department to approve.</p>
-               {(start_date)}
+            
             </Form>
             </Fragment>
         </div>
