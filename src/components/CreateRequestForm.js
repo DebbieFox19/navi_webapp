@@ -67,11 +67,11 @@ const [status, setStatus] = useState('Pending');
                         <Form.Group controlId="name">
                             <Form.Label><strong>Name</strong></Form.Label>
                             <Form.Control type="text" 
-                                          placeholder="Enter your name" 
-                                          required style={{ marginBottom: '10px' }}
-                                          value = {name}
-                                          onChange = {(e) => setName(e.target.value)}
-
+                                                      placeholder="Enter your name" 
+                                                      required style={{ marginBottom: '10px' }}
+                                                      value={name}
+                                                      onChange={(e) => setName(e.target.value)}
+                                                      autoComplete="off"
                             />
                             <Form.Control.Feedback type="invalid">Valid name is required</Form.Control.Feedback>
                         </Form.Group>
@@ -85,6 +85,7 @@ const [status, setStatus] = useState('Pending');
                                             style={{ marginBottom: '10px' }} 
                                             value = {product_team_name}
                                             onChange = {(e) => setProduct_team_name(e.target.value)}
+                                            autoComplete="off"
                             />
                         </Form.Group>
                     </div>
@@ -97,6 +98,7 @@ const [status, setStatus] = useState('Pending');
                                             required style={{ marginBottom: '10px' }} 
                                             value = {timesheet_code}
                                             onChange = {(e) => setTimesheet_code(e.target.value)}
+                                            autoComplete="off"
                             />
                         </Form.Group>
                     </div>
@@ -111,6 +113,7 @@ const [status, setStatus] = useState('Pending');
                                             required style={{ marginBottom: '10px' }} 
                                             value = {email}
                                             onChange = {(e) => setEmail(e.target.value)}
+                                            autoComplete="off"
                             />
                             <Form.Control.Feedback type="invalid">Valid email is required</Form.Control.Feedback>
                         </Form.Group>
@@ -222,6 +225,7 @@ const [status, setStatus] = useState('Pending');
                                             required style={{ marginBottom: '10px' }} 
                                             value = {description}
                                             onChange = {(e) => setDescription(e.target.value)}
+                                            autoComplete="off"
                             />
                             <Form.Control.Feedback type="invalid">Description is required</Form.Control.Feedback>
                         </Form.Group>
@@ -235,8 +239,6 @@ const [status, setStatus] = useState('Pending');
                                             onChange={(e) => setStatus(e.target.value)}
                             >
                                 <option value="Pending">Pending</option>
-                                <option value="Approved">Approved</option>
-                                <option value="Rejected">Rejected</option>
                             </Form.Control>
                         </Form.Group>
                     </div>
